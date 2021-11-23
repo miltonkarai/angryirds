@@ -11,7 +11,6 @@ var log1,log2,log3,log4
 var bird
 var backgroundimg
 var platforma;
-var constrainedLog;
 var restricao
 function preload() {
   backgroundimg=loadImage("sprites/bg.png")
@@ -39,8 +38,7 @@ function setup(){
     
     bird=new Bird(100,100)
     platforma=new Ground( 150,305,300,170)
-    constrainedLog=new Log(230,180,80,PI/2)
-    restricao=new Restricao(bird.body,constrainedLog.body)
+    restricao=new Restricao(bird.body,{x:200,y:50})
 
 }
 
@@ -61,6 +59,12 @@ function draw(){
    box5.display();
    bird.display();
    platforma.display();
-   constrainedLog.display();
    restricao.display();
+}
+
+function mouseDragged(){
+  Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+}
+function mouseReleased(){
+  restricao.lanca()
 }

@@ -1,18 +1,25 @@
 class Restricao {
-    constructor(bodyA,bodyB) {
+    constructor(bodyA,pointB) {
         var options={
             bodyA: bodyA,
-            bodyB:bodyB,
+            pointB:pointB,
             stiffness:0.04,
             length:10
           }
+          this.pointB=pointB
      this.restricao=Constraint.create(options)
 World.add(world,this.restricao)
 
     }
     display(){
- line (this.restricao.bodyA.position.x,this.restricao.bodyA.position.y,this.restricao.bodyB.position.x,this.restricao.bodyB.position.y)
- 
+    if(this.restricao.bodyA){
+      line (this.restricao.bodyA.position.x,this.restricao.bodyA.position.y,this.pointB.x,this.pointB.y) 
     }
+    }
+lanca (){
+  this.restricao.bodyA=null
+
+}
+
   };
   
